@@ -21,9 +21,12 @@ async function getFinalScore() {
       summaryScore3.textContent = data[2].score;
       summaryScore4.textContent = data[3].score;
 
-      const result =
-        data[0].score + data[1].score + data[2].score + data[3].score;
-      resultScore.textContent = Math.round(result / 4);
+      let acc = 0;
+      const totalScore = data.reduce((acc, curr) => {
+        return acc + curr.score;
+      }, acc);
+
+      resultScore.innerHTML = Math.round(totalScore / 4);
     }
   } catch (error) {
     console.error(error);
